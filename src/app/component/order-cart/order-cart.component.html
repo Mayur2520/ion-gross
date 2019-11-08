@@ -1,3 +1,22 @@
-<p>
-  order-cart works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-back-button  slot="start"></ion-back-button>
+      <ion-title>
+        Ionic Blank
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    
+  </ion-content>
+
+  <ion-tabs>
+      <ion-tab-bar slot="bottom" class="bg-burnt-orange checkout-tab">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="text-left text-white"> {{calculateMrp()| currency:"₹"}}</ion-col>
+            <ion-col class="text-right"><ion-label class="text-white">Checkout <i class="fa fa-long-arrow-right" aria-hidden="true"></i></ion-label></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-tab-bar>
+    </ion-tabs>

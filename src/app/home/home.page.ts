@@ -23,7 +23,7 @@ export class HomePage implements OnInit{
   };
 
   slideOptGrossary = {
-    slidesPerView: 2,
+    slidesPerView: 2.15,
     spaceBetween: 1,
     centeredSlides: false
   };

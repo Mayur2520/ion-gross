@@ -1,71 +1,122 @@
 <ion-header>
   <ion-toolbar>
-      <ion-menu-button slot="start" autoHide="true"></ion-menu-button>
+    <ion-menu-button slot="start" autoHide="true"></ion-menu-button>
     <ion-title>
       Ionic Blank
     </ion-title>
-    <mat-icon slot="end" class="mr-4" matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+    <mat-icon slot="end" class="mr-4" matBadge="{{myCart.length}}" matBadgeColor="warn" (click)="UpdateCart()">shopping_cart</mat-icon>
   </ion-toolbar>
   <ion-toolbar style="margin-top: -1px;">
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-            <ion-button color="light">Catagory</ion-button>
+          <ion-button color="light">Catagory</ion-button>
         </ion-col>
         <ion-col size="8">
-           <input class="cst-form-control" placeholder="Search" >
+          <input class="cst-form-control" placeholder="Search">
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
 <ion-content>
- 
-    <!-- SLIDER -->
-    <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <img src="../../assets/images/sliders/1.jpg"/>
-        </ion-slide>
-        <ion-slide>
-            <img src="../../assets/images/sliders/2.jpg"/>
-        </ion-slide>
-        <ion-slide>
-            <img src="../../assets/images/sliders/3.jpg"/>
-        </ion-slide>
-</ion-slides>
-<!-- SLIDER -->
 
-<ion-item-divider class="mt-2">
+  <!-- SLIDER -->
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <img src="../../assets/images/sliders/1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/images/sliders/2.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/images/sliders/3.jpg" />
+    </ion-slide>
+  </ion-slides>
+  <!-- SLIDER -->
+
+  <ion-item-divider class="mt-2">
     <ion-label>
-     FRUITS
+      FRUITS
     </ion-label>
   </ion-item-divider>
-<!-- FRUITS SLIDER -->
-<ion-slides [options]="slideOptGrossary">
+  <!-- FRUITS SLIDER -->
+  <ion-slides [options]="slideOptGrossary">
     <ion-slide *ngFor="let fruits of FruitsList; let i = index">
       <div>
-        <ion-card>
-          <ion-card-header (click)="ProductDetails(i,'FruitsList')">
-            <ion-card-content  matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-              <ion-img [src]="fruits.image" style="height: 100px;width: 100%;"></ion-img>
-            </ion-card-content>
-            <div class="row">
-              <div class="col-12 text-left">
+        <ion-card class="box">
+          <div class="ribbon"><span>5% OFF</span></div>
+          <ion-card-header>
+            <div (click)="ProductDetails(i,'FruitsList')">
+              <ion-card-content>
+                <ion-img [src]="fruits.image" style="height: 100px;width: 100%;"></ion-img>
+              </ion-card-content>
+              <div class="row">
+                <div class="col-12 text-left">
                   <ion-card-title class="text-burnt-orange">
-                {{ fruits.name }}
-              </ion-card-title>
-              </div>
-              <div class="col-12 text-left">
-                <h6>{{fruits.price | currency:"₹"}}   <span class="crossedtext text-danger">{{fruits.price +10 | currency:"₹"}}</span></h6>
+                    {{ fruits.name }}
+                  </ion-card-title>
+                </div>
+                <div class="col-12 text-left">
+                  <h6>{{fruits.price | currency:"₹"}} <span
+                      class="crossedtext text-danger">{{fruits.price +10 | currency:"₹"}}</span></h6>
+                </div>
               </div>
             </div>
-            <button class="btn btn-sm bg-lagoon text-white">Add to Cart</button>
+            <button class="btn btn-sm bg-lagoon text-white" (click)="addToCart(fruits)" *ngIf="(!fruits.qty || fruits.qty == 0 || ExitInCart(fruits))">Add to Cart</button>
+            <div class="btn-group btn-group-sm" *ngIf="(fruits.qty && fruits.qty > 0 || ExitInCart(fruits))">
+                <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(fruits,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
+                <button type="button" class="btn btn-sm bg-white text-grey">{{(fruits.qty < 10 )? '0'+fruits.qty :fruits.qty }}</button>
+                <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(fruits,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
+              </div>
           </ion-card-header>
         </ion-card>
       </div>
     </ion-slide>
   </ion-slides>
-<!-- FRUITS SLIDER -->
+  <!-- FRUITS SLIDER -->
+
+
+  <ion-item-divider class="mt-2">
+    <ion-label>
+      VEGITABLES
+    </ion-label>
+  </ion-item-divider>
+  <!-- VEGITABLES SLIDER -->
+  <ion-slides [options]="slideOptGrossary">
+    <ion-slide *ngFor="let vegitables of vegitablesList; let i = index">
+      <div>
+        <ion-card class="box">
+          <div class="ribbon"><span>5% OFF</span></div>
+          <ion-card-header>
+            <div (click)="ProductDetails(i,'vegitablesList')">
+              <ion-card-content>
+                <ion-img [src]="vegitables.image" style="height: 100px;width: 100%;"></ion-img>
+              </ion-card-content>
+              <div class="row">
+                <div class="col-12 text-left">
+                  <ion-card-title class="text-burnt-orange">
+                    {{ vegitables.name }}
+                  </ion-card-title>
+                </div>
+                <div class="col-12 text-left">
+                  <h6>{{vegitables.price | currency:"₹"}} <span
+                      class="crossedtext text-danger">{{vegitables.price +10 | currency:"₹"}}</span></h6>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-sm bg-lagoon text-white" (click)="addToCart(vegitables)" *ngIf="(!vegitables.qty || vegitables.qty == 0 || ExitInCart(vegitables))">Add to Cart</button>
+            <div class="btn-group btn-group-sm" *ngIf="(vegitables.qty && vegitables.qty > 0 || ExitInCart(vegitables))">
+                <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(vegitables,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
+                <button type="button" class="btn btn-sm bg-white text-grey">{{(vegitables.qty < 10 )? '0'+vegitables.qty :vegitables.qty }}</button>
+                <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(vegitables,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
+              </div>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <!-- VEGITABLES SLIDER -->
 
 
 </ion-content>

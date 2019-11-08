@@ -14,14 +14,16 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import {PinchZoomModule} from 'ngx-pinch-zoom';
 
 import { MaterialModules } from './module/material-modules';
 import { NavigationComponent } from './component/navigation/navigation.component';
-
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import { OrderCartComponent } from './component/order-cart/order-cart.component';
 @NgModule({
-  declarations: [AppComponent, NavigationComponent],
+  declarations: [AppComponent, NavigationComponent, ProductDetailsComponent, OrderCartComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,IonicStorageModule.forRoot(),FormsModule, MaterialModules],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,IonicStorageModule.forRoot(),FormsModule, MaterialModules, PinchZoomModule],
   providers: [
     StatusBar,
     SplashScreen,
