@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-back-button  slot="start"></ion-back-button>
       <ion-title>
-        Ionic Blank
+        
       </ion-title>
       <mat-icon slot="end" class="mr-4" matBadge="{{myCart.length}}" matBadgeColor="warn" (click)="RedirectToCart()">shopping_cart</mat-icon>
     </ion-toolbar>
@@ -30,11 +30,11 @@
         class="crossedtext text-danger">{{ProductDetails.price +10 | currency:"₹"}}</span></ion-title>
     </ion-col>
       <ion-col size="12" class="text-right">
-          <button class="btn btn-sm bg-lagoon text-white" (click)="addToCart(ProductDetails)" *ngIf="(!ProductDetails.qty || ProductDetails.qty == 0 || ExitInCart(ProductDetails))">Add to Cart</button>
+          <button class="btn btn-sm bg-orange-gradient text-white" (click)="addToCart(ProductDetails)" *ngIf="(!ProductDetails.qty || ProductDetails.qty == 0 || ExitInCart(ProductDetails))">Add to Cart</button>
           <div class="btn-group btn-group-sm" *ngIf="(ProductDetails.qty && ProductDetails.qty > 0 || ExitInCart(ProductDetails))">
-              <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(ProductDetails,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
+              <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(ProductDetails,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
               <button type="button" class="btn btn-sm bg-white text-grey">{{(ProductDetails.qty < 10 )? '0'+ProductDetails.qty :ProductDetails.qty }}</button>
-              <button type="button" class="btn btn-sm bg-lagoon text-white" (click)="updateitemQty(ProductDetails,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
+              <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(ProductDetails,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
             </div>
       </ion-col>
     </ion-row>

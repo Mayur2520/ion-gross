@@ -63,10 +63,30 @@ export class OrderCartComponent implements OnInit {
   {
     var mrp = 0;
     this.myCart.map((value,index)=>{
-      mrp += (parseFloat(value.price) * parseFloat(value.qty));
+      mrp += (parseFloat(value.mrp) * parseFloat(value.qty));
     });
 
     return mrp;
+  }
+
+  calculateGross()
+  {
+    var gross = 0;
+    this.myCart.map((value,index)=>{
+      gross += (parseFloat(value.price) * parseFloat(value.qty));
+    });
+
+    return gross;
+  }
+
+  calculateDescount()
+  {
+    var discount = 0;
+    this.myCart.map((value,index)=>{
+      discount += (( parseFloat(value.mrp) - ( parseFloat(value.mrp) * (parseFloat(value.discount) / 100))) * parseFloat(value.qty));
+    });
+
+    return discount;
   }
 
   redirectionToUrl(urlparams)

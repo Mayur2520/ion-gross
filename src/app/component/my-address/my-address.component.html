@@ -1,3 +1,15 @@
-<p>
-  my-address works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-back-button  slot="start"></ion-back-button>
+      <ion-title>
+        My Addresses
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreeen>
+    <div class="card" (click)="redirectTo('add_address')">
+      <div class="col-12 p-2">
+          <ion-label class="pl-2"><ion-icon class="text-burnt-orange" name="add-circle-outline" style="font-size: x-large;position: relative;top: 7px;"></ion-icon> Add new address, in {{currentAddress}}</ion-label>
+      </div>
+    </div>
+  </ion-content>

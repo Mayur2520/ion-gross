@@ -2,21 +2,86 @@
     <ion-toolbar>
         <ion-back-button  slot="start"></ion-back-button>
       <ion-title>
-        Ionic Blank
+        My Cart
       </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    
-  </ion-content>
+    <div *ngIf="myCart.length > 0">
+      <ion-card>
+        <ion-row>
+          <ion-col class="text-left">MRP</ion-col>
+          <ion-col class="text-right">{{calculateMrp()| currency:"₹"}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="text-left">Discount</ion-col>
+          <ion-col class="text-right">{{calculateDescount()| currency:"₹"}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="text-left">Gross Total</ion-col>
+          <ion-col class="text-right">{{calculateGross()| currency:"₹"}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="text-left">Delivery Charges</ion-col>
+          <ion-col class="text-right">{{+shipping| currency:"₹"}}</ion-col>
+        </ion-row>
+        <ion-item-divider>
+        </ion-item-divider>
+        <ion-row>
+          <ion-col class="text-left"><ion-label>Net total</ion-label></ion-col>
+          <ion-col class="text-right"><ion-label>{{calculateGross() + shipping| currency:"₹"}}</ion-label></ion-col>
+        </ion-row>
+      </ion-card>
+        <ion-list>
+          <ion-list-header>
+            Items
+          </ion-list-header>
+  
+          <ion-item *ngFor="let _data of myCart">
+            <ion-thumbnail slot="start">
+              <ion-img [src]="_data.image"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{_data.price | currency:"₹"}} &nbsp; <span class="crossedtext text-secondary" *ngIf="_data.mrp > _data.price">{{_data.mrp | currency:"₹"}}</span> &nbsp;&nbsp;<span class="bg-littel-leaf text-white p-1 discount-badge" *ngIf="_data.discount > 0">{{_data.discount}}% OFF</span> </h2>
+              <h3>{{_data.name}} </h3>
+              <ion-grid>
+                  <ion-row>
+                    <ion-col class="pull-right text-right">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(_data,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
+                            <button type="button" class="btn btn-sm bg-white text-grey">{{(_data.qty < 10 )? '0'+_data.qty :_data.qty }}</button>
+                            <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(_data,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
+                          </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+            </ion-label>
+          </ion-item>
+          </ion-list>
 
-  <ion-tabs>
-      <ion-tab-bar slot="bottom" class="bg-burnt-orange checkout-tab">
+        
+
+    </div>
+    <div *ngIf="myCart.length == 0">
+
+    </div>
+  </ion-content>
+  <mat-toolbar class="bg-sunrise checkout-tab">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="text-left text-white"> Checkout</ion-col>
+        <ion-col class="text-right"><ion-label class="text-white"> {{calculateGross() + shipping| currency:"₹"}} <ion-icon class="checkout-arrow" name="arrow-forward"></ion-icon></ion-label></ion-col>
+      </ion-row>
+    </ion-grid>
+  </mat-toolbar>
+
+<!--   <ion-tabs>
+      <ion-tab-bar slot="bottom" class="bg-orange-gradient checkout-tab">
         <ion-grid>
           <ion-row>
-            <ion-col class="text-left text-white"> {{calculateMrp()| currency:"₹"}}</ion-col>
+            <ion-col class="text-left text-white"> {{calculateGross() + shipping| currency:"₹"}}</ion-col>
             <ion-col class="text-right"><ion-label class="text-white">Checkout <i class="fa fa-long-arrow-right" aria-hidden="true"></i></ion-label></ion-col>
           </ion-row>
         </ion-grid>
       </ion-tab-bar>
-    </ion-tabs>
+    </ion-tabs> -->

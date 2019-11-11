@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
     {name:"Login",icon:"person",url:'/signin'},
     {name:"Home",icon:"home",url:'/home'},
     {name:"Offers",icon:"local_offer",url:'/offers'},
-    {name:"My Addresses",icon:"my_location",url:'/addresses'},
+    {name:"My Addresses",icon:"my_location",url:'/my_address'},
     {name:"My Orders",icon:"history",url:'/order_history'},
     {name:"My Cart",icon:"shopping_cart",url:'/cart'},
   ];
