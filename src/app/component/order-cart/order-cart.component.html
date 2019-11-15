@@ -48,9 +48,9 @@
                   <ion-row>
                     <ion-col class="pull-right text-right">
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(_data,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
+                            <button type="button" class="btn btn-sm bg-burnt-orange text-white" (click)="updateitemQty(_data,'dec')"><ion-icon name="remove" class="mt-1"></ion-icon></button>
                             <button type="button" class="btn btn-sm bg-white text-grey">{{(_data.qty < 10 )? '0'+_data.qty :_data.qty }}</button>
-                            <button type="button" class="btn btn-sm bg-orange-gradient text-white" (click)="updateitemQty(_data,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
+                            <button type="button" class="btn btn-sm bg-burnt-orange text-white" (click)="updateitemQty(_data,'inc')"><ion-icon name="add" class="mt-1"></ion-icon></button>
                           </div>
                     </ion-col>
                   </ion-row>
@@ -76,7 +76,7 @@
   </mat-toolbar>
 
 <!--   <ion-tabs>
-      <ion-tab-bar slot="bottom" class="bg-orange-gradient checkout-tab">
+      <ion-tab-bar slot="bottom" class="bg-burnt-orange checkout-tab">
         <ion-grid>
           <ion-row>
             <ion-col class="text-left text-white"> {{calculateGross() + shipping| currency:"₹"}}</ion-col>

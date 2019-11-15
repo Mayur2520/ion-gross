@@ -1,0 +1,31 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "16.+",
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    }
+  },
+  "dependent_plugins": {}
+}

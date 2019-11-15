@@ -3,8 +3,11 @@ import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 import { Fruits } from '../interfaces/fruits';
 import { GrossaryService } from '../services/grossary.service';
+import { SearchItemComponent } from '../component/search-item/search-item.component';
+import { CatagoriesComponent } from '../component/catagories/catagories.component';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -28,7 +31,7 @@ export class HomePage implements OnInit{
     centeredSlides: false
   };
 
-  constructor(private menu: MenuController, private storage: Storage, private router: Router, private _GrossaryService : GrossaryService) {}
+  constructor(private menu: MenuController, private storage: Storage, private router: Router, private _GrossaryService : GrossaryService, public modalController: ModalController) {}
 
 
   ngOnInit() {
@@ -47,6 +50,7 @@ export class HomePage implements OnInit{
   this.FruitsList = this._GrossaryService.getFruitsList();
  }
 
+ 
  getVegitables()
  {
   this.vegitablesList = this._GrossaryService.getVegitablesList();
@@ -152,6 +156,17 @@ export class HomePage implements OnInit{
   OpenOnSeparateSection(container,title)
   {
     this.redirectionToUrl(['/productsection',container,title])
+  }
+
+
+  async presentModalCatagory(modalcomponent) {
+   /*  const modal = await this.modalController.create({component: CatagoriesComponent});
+    return await modal.present(); */
+  }
+
+  async presentModalSearch(modalcomponent) {
+    /* const modal = await this.modalController.create({component: SearchItemComponent});
+    return await modal.present(); */
   }
 
 }

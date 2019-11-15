@@ -6,3 +6,20 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content fullscreen>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let _data of offersList; let i = index" size="{{_data.size}}">
+
+           <mat-card class="offer-card">
+               <ion-img mat-card-image [src]="_data.image"></ion-img>
+               <mat-card-content>
+                 <p>
+                     {{_data.name}}
+                 </p>
+               </mat-card-content>
+             </mat-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
